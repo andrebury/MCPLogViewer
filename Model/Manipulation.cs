@@ -8,13 +8,22 @@ using System.Windows.Forms;
 
 namespace MCPLOGViewer.Model
 {
-    class Manipulation: IManipulation
+    public class Manipulation
     {
         //Dictionary<string, string> posicaoCor;
+        public int opDestaque;
         List<string> linhas;
         object[] itens;
         List<string> calllegids;
-        public Manipulation()       {
+        string pastaConfig = Environment.GetEnvironmentVariable("appdata").ToString() +  "\\MCPLogViewer";
+        public List<string> ListaPalavrasImportantes;
+        string[] palavrasProcuradas = { "prompt_start", "Adding userdata", "prompt_stop", "X-Genesys-", "ANI=sip:", "form_enter :", "form_exit ", "goto :#" };
+
+        public Manipulation()
+        {
+            ListaPalavrasImportantes = new List<string>();
+            
+            carregaPalavrasImportantes();
         }
         
         public object[] encotrarTelefone(RichTextBox textBox, string telefone)
@@ -45,6 +54,60 @@ namespace MCPLOGViewer.Model
             
         }
 
+        public void carregaPalavrasImportantes()
+        {
+
+            if (File.Exists(pastaConfig + "\\PalavrasImportantes.txt"))
+            {
+
+                ListaPalavrasImportantes.AddRange(File.ReadAllText(pastaConfig + "\\PalavrasImportantes.txt").Split('\n'));
+                File.Delete(pastaConfig + "\\PalavrasImportantes.txt");
+
+            }
+            else
+            {
+                ListaPalavrasImportantes.AddRange(palavrasProcuradas);
+            }
+        }
+         
+        public void criaTXTPalavrasImportantes()
+        {
+        
+            if (!File.Exists(pastaConfig))
+            {
+                Directory.CreateDirectory(pastaConfig);               
+                
+            }
+
+            ListaPalavrasImportantes.AddRange(palavrasProcuradas);
+            guardaPalavrasImportantes(ListaPalavrasImportantes);
+
+        }
+        
+        public void guardaPalavrasImportantes(List<string> palavras) { 
+        
+            using (FileStream fs = File.Create(pastaConfig + "\\PalavrasImportantes.txt"))
+            {
+                if (palavras.Count == 0)
+                {
+                    File.Delete(pastaConfig + "\\PalavrasImportantes.txt");
+                }
+                else
+                {
+                    string arqs = "";
+                    foreach (string arq in palavras)
+                    {
+                        arqs += arqs.Length == 0 ? arq : "\n" + arq;
+
+                    }
+
+                    byte[] info = new UTF8Encoding(true).GetBytes(arqs);
+                    fs.Write(info, 0, info.Length);
+                    fs.Close();
+                }
+            }
+        }
+
         public void encontrarDebugIDs(List<string> telefones)
         {
             calllegids = new List<string>();
@@ -60,18 +123,13 @@ namespace MCPLOGViewer.Model
                     //    count++;
                     //}
                 
-                if (!calllegids.Contains(linha.Substring(linha.IndexOf("DBUG") + 5, 17)))
-                {
-
-                    calllegids.Add(linha.Substring(linha.IndexOf("DBUG") + 5, 17));
+                    if (!calllegids.Contains(linha.Substring(linha.IndexOf("DBUG") + 5, 17)))
+                    {
+                        calllegids.Add(linha.Substring(linha.IndexOf("DBUG") + 5, 17));
+                    }
                 }
-                }
-
             }
-            }
-            
-            
         }
-
     }
+}
 
