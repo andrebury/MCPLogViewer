@@ -90,6 +90,7 @@
             this.txt_palavra.Size = new System.Drawing.Size(310, 20);
             this.txt_palavra.TabIndex = 6;
             this.txt_palavra.Text = "Adicionar palavras";
+            this.txt_palavra.Click += new System.EventHandler(this.txt_palavra_Click);
             // 
             // gbo_destaque
             // 

@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace MCPLOGViewer.Model
 {
+    public class Data
+    {
+        public string[] Palavra;
+        //public string Cor;
+    }
+
+
     public class Manipulation
     {
         //Dictionary<string, string> posicaoCor;
@@ -18,14 +25,70 @@ namespace MCPLOGViewer.Model
         string pastaConfig = Environment.GetEnvironmentVariable("appdata").ToString() +  "\\MCPLogViewer";
         public List<string> ListaPalavrasImportantes;
         string[] palavrasProcuradas = { "prompt_start", "Adding userdata", "prompt_stop", "X-Genesys-", "ANI=sip:", "form_enter :", "form_exit ", "goto :#" };
+        public Data data;
 
         public Manipulation()
         {
             ListaPalavrasImportantes = new List<string>();
-            
-            carregaPalavrasImportantes();
+
+            //carregaPalavrasImportantes();
+            data = new Data();
+            carregaConfigFile();
         }
         
+
+        public void carregaConfigFile()
+        {
+            if (File.Exists(pastaConfig + "\\PalavrasImportantes.xml"))
+            {
+                XMLDataReader();
+                
+            }
+            else
+            {
+                ListaPalavrasImportantes.AddRange(palavrasProcuradas);
+            }
+        }
+
+        public void XMLDataWriter(string[] obj)
+        {
+            File.Delete(pastaConfig + "\\PalavrasImportantes.xml");
+
+            XmlDocument xmlDoc = new XmlDocument();
+            
+            XmlNode declaration = xmlDoc.CreateXmlDeclaration("1.0", "Windows-1252", "yes");
+            xmlDoc.AppendChild(declaration);
+
+            XmlNode rootNode = xmlDoc.CreateElement("ListaPalavras");
+            xmlDoc.AppendChild(rootNode);
+
+            foreach(string palavra in obj)
+            {            
+                XmlNode userNode = xmlDoc.CreateElement("palavra");
+                XmlAttribute attribute = xmlDoc.CreateAttribute("cor");
+                attribute.Value = "Red";
+                userNode.Attributes.Append(attribute);
+                userNode.InnerText = palavra;
+                rootNode.AppendChild(userNode);
+            }
+            xmlDoc.Save(pastaConfig + "\\PalavrasImportantes.xml");
+
+        }
+
+        public void XMLDataReader()
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(pastaConfig + "\\PalavrasImportantes.xml");
+            XmlNodeList userNodes = xmlDoc.SelectNodes("//ListaPalavras/palavra");
+            ListaPalavrasImportantes.Clear();
+            foreach (XmlNode userNode in userNodes)
+            {
+                ListaPalavrasImportantes.Add(userNode.InnerText);
+            }
+
+        }
+
+
         public object[] encotrarTelefone(RichTextBox textBox, string telefone)
         {
             linhas = new List<string>();
@@ -57,11 +120,11 @@ namespace MCPLOGViewer.Model
         public void carregaPalavrasImportantes()
         {
 
-            if (File.Exists(pastaConfig + "\\PalavrasImportantes.txt"))
+            if (File.Exists(pastaConfig + "\\PalavrasImportantes.xml"))
             {
 
-                ListaPalavrasImportantes.AddRange(File.ReadAllText(pastaConfig + "\\PalavrasImportantes.txt").Split('\n'));
-                File.Delete(pastaConfig + "\\PalavrasImportantes.txt");
+                ListaPalavrasImportantes.AddRange(File.ReadAllText(pastaConfig + "\\PalavrasImportantes.xml").Split('\n'));
+                File.Delete(pastaConfig + "\\PalavrasImportantes.xml");
 
             }
             else
@@ -69,28 +132,15 @@ namespace MCPLOGViewer.Model
                 ListaPalavrasImportantes.AddRange(palavrasProcuradas);
             }
         }
-         
-        public void criaTXTPalavrasImportantes()
-        {
-        
-            if (!File.Exists(pastaConfig))
-            {
-                Directory.CreateDirectory(pastaConfig);               
-                
-            }
 
-            ListaPalavrasImportantes.AddRange(palavrasProcuradas);
-            guardaPalavrasImportantes(ListaPalavrasImportantes);
-
-        }
         
         public void guardaPalavrasImportantes(List<string> palavras) { 
         
-            using (FileStream fs = File.Create(pastaConfig + "\\PalavrasImportantes.txt"))
+            using (FileStream fs = File.Create(pastaConfig + "\\PalavrasImportantes.xml"))
             {
                 if (palavras.Count == 0)
                 {
-                    File.Delete(pastaConfig + "\\PalavrasImportantes.txt");
+                    File.Delete(pastaConfig + "\\PalavrasImportantes.xml");
                 }
                 else
                 {

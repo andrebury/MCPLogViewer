@@ -23,12 +23,11 @@ namespace MCPLOGViewer.View
             this.manipulation = manipulation;
             
             
-        }
-
-     
+        }     
 
         private void PalavrasImportantes_Load(object sender, EventArgs e)
         {
+
             lst_palavras.Items.AddRange(manipulation.ListaPalavrasImportantes.ToArray());
             rbt_sem_destaque.Checked = true;
         }
@@ -61,7 +60,8 @@ namespace MCPLOGViewer.View
 
         private void PalavrasImportantes_Disposed(object sender, EventArgs e)
         {
-            manipulation.guardaPalavrasImportantes(manipulation.ListaPalavrasImportantes);
+            
+            manipulation.XMLDataWriter(manipulation.ListaPalavrasImportantes.ToArray());
         }
 
         private void lst_palavras_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,5 +82,12 @@ namespace MCPLOGViewer.View
             opDestaque = 0;
         }
 
+        private void txt_palavra_Click(object sender, EventArgs e)
+        {
+            if(txt_palavra.Text == "Adicionar palavras")
+            {
+                txt_palavra.Text = "";
+            }
+        }
     }
 }
