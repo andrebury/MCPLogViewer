@@ -49,6 +49,7 @@ namespace MCPLOGViewer.View
             {
                 lst_palavras.Items.Add(txt_palavra.Text);
                 manipulation.ListaPalavrasImportantes.Add(txt_palavra.Text);
+                txt_palavra.Text = "";
             }
             else
             {
@@ -60,7 +61,8 @@ namespace MCPLOGViewer.View
         {
             if(lst_palavras.SelectedIndex >= 0)
             {
-                lst_palavras.Items.RemoveAt(lst_palavras.SelectedIndex);
+                manipulation.ListaPalavrasImportantes.Remove(lst_palavras.SelectedItem.ToString());
+                lst_palavras.Items.RemoveAt(lst_palavras.SelectedIndex);                
             }
             else
             {
