@@ -1,6 +1,6 @@
 ﻿namespace MCPLOGViewer.View
 {
-    partial class PalavrasImportantes
+    partial class Preferencias
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PalavrasImportantes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Preferencias));
             this.label1 = new System.Windows.Forms.Label();
             this.lst_palavras = new System.Windows.Forms.ListBox();
             this.btn_adcicionar = new System.Windows.Forms.Button();
@@ -37,6 +37,10 @@
             this.gbo_destaque = new System.Windows.Forms.GroupBox();
             this.rbt_sem_destaque = new System.Windows.Forms.RadioButton();
             this.rbt_destaque = new System.Windows.Forms.RadioButton();
+            this.cmb_fonte = new System.Windows.Forms.ComboBox();
+            this.cmb_tamanho = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.gbo_destaque.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,13 +57,10 @@
             // 
             // lst_palavras
             // 
-            this.lst_palavras.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.lst_palavras.FormattingEnabled = true;
             this.lst_palavras.Location = new System.Drawing.Point(3, 136);
             this.lst_palavras.Name = "lst_palavras";
-            this.lst_palavras.Size = new System.Drawing.Size(558, 95);
+            this.lst_palavras.Size = new System.Drawing.Size(341, 95);
             this.lst_palavras.TabIndex = 3;
             this.lst_palavras.SelectedIndexChanged += new System.EventHandler(this.lst_palavras_SelectedIndexChanged);
             // 
@@ -75,7 +76,7 @@
             // 
             // btn_excluir
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(261, 107);
+            this.btn_excluir.Location = new System.Drawing.Point(269, 107);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(75, 23);
             this.btn_excluir.TabIndex = 5;
@@ -85,9 +86,9 @@
             // 
             // txt_palavra
             // 
-            this.txt_palavra.Location = new System.Drawing.Point(12, 81);
+            this.txt_palavra.Location = new System.Drawing.Point(3, 81);
             this.txt_palavra.Name = "txt_palavra";
-            this.txt_palavra.Size = new System.Drawing.Size(310, 20);
+            this.txt_palavra.Size = new System.Drawing.Size(341, 20);
             this.txt_palavra.TabIndex = 6;
             this.txt_palavra.Text = "Adicionar palavras";
             this.txt_palavra.Click += new System.EventHandler(this.txt_palavra_Click);
@@ -96,7 +97,7 @@
             // 
             this.gbo_destaque.Controls.Add(this.rbt_sem_destaque);
             this.gbo_destaque.Controls.Add(this.rbt_destaque);
-            this.gbo_destaque.Location = new System.Drawing.Point(342, 60);
+            this.gbo_destaque.Location = new System.Drawing.Point(357, 136);
             this.gbo_destaque.Name = "gbo_destaque";
             this.gbo_destaque.Size = new System.Drawing.Size(193, 70);
             this.gbo_destaque.TabIndex = 22;
@@ -125,11 +126,65 @@
             this.rbt_destaque.Text = "Destaque no texto";
             this.rbt_destaque.UseVisualStyleBackColor = true;
             // 
-            // PalavrasImportantes
+            // cmb_fonte
+            // 
+            this.cmb_fonte.FormattingEnabled = true;
+            this.cmb_fonte.Items.AddRange(new object[] {
+            "Consolas",
+            "Arial",
+            "Roboto",
+            "Microsoft Sans Serif"});
+            this.cmb_fonte.Location = new System.Drawing.Point(76, 273);
+            this.cmb_fonte.Name = "cmb_fonte";
+            this.cmb_fonte.Size = new System.Drawing.Size(121, 21);
+            this.cmb_fonte.TabIndex = 23;
+            // 
+            // cmb_tamanho
+            // 
+            this.cmb_tamanho.FormattingEnabled = true;
+            this.cmb_tamanho.Items.AddRange(new object[] {
+            "2",
+            "4",
+            "6",
+            "8",
+            "10",
+            "12",
+            "14",
+            "16",
+            "18",
+            "20"});
+            this.cmb_tamanho.Location = new System.Drawing.Point(303, 273);
+            this.cmb_tamanho.Name = "cmb_tamanho";
+            this.cmb_tamanho.Size = new System.Drawing.Size(41, 21);
+            this.cmb_tamanho.TabIndex = 24;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(0, 276);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Tipo da fonte";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(203, 276);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Tamanho da fonte";
+            // 
+            // Preferencias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 241);
+            this.ClientSize = new System.Drawing.Size(562, 308);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmb_tamanho);
+            this.Controls.Add(this.cmb_fonte);
             this.Controls.Add(this.gbo_destaque);
             this.Controls.Add(this.txt_palavra);
             this.Controls.Add(this.btn_excluir);
@@ -137,7 +192,7 @@
             this.Controls.Add(this.lst_palavras);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "PalavrasImportantes";
+            this.Name = "Preferencias";
             this.Text = "Palavras Importantes";
             this.Load += new System.EventHandler(this.PalavrasImportantes_Load);
             this.Disposed += new System.EventHandler(this.PalavrasImportantes_Disposed);
@@ -157,5 +212,9 @@
         private System.Windows.Forms.GroupBox gbo_destaque;
         private System.Windows.Forms.RadioButton rbt_sem_destaque;
         private System.Windows.Forms.RadioButton rbt_destaque;
+        private System.Windows.Forms.ComboBox cmb_fonte;
+        private System.Windows.Forms.ComboBox cmb_tamanho;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

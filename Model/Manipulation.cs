@@ -24,6 +24,8 @@ namespace MCPLOGViewer.Model
         List<string> calllegids;
         string pastaConfig = Environment.GetEnvironmentVariable("appdata").ToString() +  "\\MCPLogViewer";
         public List<string> ListaPalavrasImportantes;
+        public string opFonte;
+        public string opTamanho;
         string[] palavrasProcuradas = { "prompt_start", "Adding userdata", "prompt_stop", "X-Genesys-", "ANI=sip:", "form_enter :", "form_exit ", "goto :#" };
         public Data data;
 
@@ -33,22 +35,9 @@ namespace MCPLOGViewer.Model
 
             //carregaPalavrasImportantes();
             data = new Data();
-            carregaConfigFile();
+            XMLDataReader();
         }
         
-
-        public void carregaConfigFile()
-        {
-            if (File.Exists(pastaConfig + "\\PalavrasImportantes.xml"))
-            {
-                XMLDataReader();
-                
-            }
-            else
-            {
-                ListaPalavrasImportantes.AddRange(palavrasProcuradas);
-            }
-        }
 
         public void XMLDataWriter(string[] obj)
         {
@@ -59,18 +48,38 @@ namespace MCPLOGViewer.Model
             XmlNode declaration = xmlDoc.CreateXmlDeclaration("1.0", "Windows-1252", "yes");
             xmlDoc.AppendChild(declaration);
 
-            XmlNode rootNode = xmlDoc.CreateElement("ListaPalavras");
+            XmlNode rootNode = xmlDoc.CreateElement("MCPLogViewer");
             xmlDoc.AppendChild(rootNode);
 
-            foreach(string palavra in obj)
+            XmlNode listaPalavrasnode = xmlDoc.CreateElement("ListaPalavras");
+            rootNode.AppendChild(listaPalavrasnode);
+
+            XmlAttribute Destaqueattribute = xmlDoc.CreateAttribute("destaque");
+            Destaqueattribute.Value = opDestaque.ToString();
+            listaPalavrasnode.Attributes.Append(Destaqueattribute);
+
+            foreach (string palavra in obj)
             {            
-                XmlNode userNode = xmlDoc.CreateElement("palavra");
+                XmlNode palavraNode = xmlDoc.CreateElement("palavra");
                 XmlAttribute attribute = xmlDoc.CreateAttribute("cor");
                 attribute.Value = "Red";
-                userNode.Attributes.Append(attribute);
-                userNode.InnerText = palavra;
-                rootNode.AppendChild(userNode);
+                palavraNode.Attributes.Append(attribute);
+                palavraNode.InnerText = palavra;
+                listaPalavrasnode.AppendChild(palavraNode);
             }
+            
+            XmlNode fonteNode = xmlDoc.CreateElement("Fonte");
+            rootNode.AppendChild(fonteNode);
+
+            XmlAttribute fontAttribute = xmlDoc.CreateAttribute("fonte");
+            fontAttribute.Value = opFonte ;
+
+            XmlAttribute tamanhoAttribute = xmlDoc.CreateAttribute("tamanho");
+            tamanhoAttribute.Value = opTamanho;
+
+            fonteNode.Attributes.Append(fontAttribute);
+            fonteNode.Attributes.Append(tamanhoAttribute);
+
             xmlDoc.Save(pastaConfig + "\\PalavrasImportantes.xml");
 
         }
@@ -78,14 +87,49 @@ namespace MCPLOGViewer.Model
         public void XMLDataReader()
         {
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(pastaConfig + "\\PalavrasImportantes.xml");
-            XmlNodeList userNodes = xmlDoc.SelectNodes("//ListaPalavras/palavra");
-            ListaPalavrasImportantes.Clear();
-            foreach (XmlNode userNode in userNodes)
-            {
-                ListaPalavrasImportantes.Add(userNode.InnerText);
-            }
+            xmlDoc.PreserveWhitespace = true;
 
+            try { xmlDoc.Load(pastaConfig + "\\PalavrasImportantes.xml"); }
+            catch (System.IO.FileNotFoundException)
+            {
+                xmlDoc.LoadXml("<?xml version=\"1.0\" encoding=\"Windows-1252\" standalone=\"yes\"?>\n" +
+                    "<MCPLogViewer>\n" +
+                      "<ListaPalavras destaque=\"0\">\n" +
+                        "<palavra cor=\"Red\">prompt_start </palavra>\n" +
+                        "<palavra cor=\"Red\">Adding userdata </palavra>\n" +
+                        "<palavra cor=\"Red\">prompt_stop </palavra>\n" +
+                        "<palavra cor=\"Red\">X-Genesys-</palavra>\n" +
+                        "<palavra cor=\"Red\">ANI=sip:</palavra>\n" +
+                        "<palavra cor=\"Red\">form_enter :</palavra>\n" +
+                        "<palavra cor=\"Red\">form_exit </palavra>\n" +
+                        "<palavra cor=\"Red\">goto :#</palavra>\n" +
+                      "</ListaPalavras >\n" +
+                      "<Fonte fonte=\"Consolas\" tamanho=\"12\"/>" +
+                    "</MCPLogViewer>");
+            }
+            finally
+            {
+                XmlNodeList ListapalavraNode = xmlDoc.SelectNodes("//MCPLogViewer/ListaPalavras");
+                foreach (XmlNode opDestaqueNode in ListapalavraNode)
+                {
+                    opDestaque = int.Parse(opDestaqueNode.Attributes["destaque"].Value);
+                }
+
+
+                XmlNodeList palavraNodes = xmlDoc.SelectNodes("//MCPLogViewer/ListaPalavras/palavra");
+                foreach (XmlNode palavraNode in palavraNodes)
+                {
+                    ListaPalavrasImportantes.Add(palavraNode.InnerText);
+                    //int age = int.Parse(userNode.Attributes["age"].Value);
+                    //userNode.Attributes["cor"].Value = NEWCOLOR.ToString();
+                }
+                XmlNodeList fontesNode = xmlDoc.SelectNodes("//MCPLogViewer/Fonte");
+                foreach (XmlNode fonteNode in fontesNode)
+                {
+                    opFonte = fonteNode.Attributes["fonte"].Value;                        
+                    opTamanho = fonteNode.Attributes["tamanho"].Value;
+                }
+            }
         }
 
 

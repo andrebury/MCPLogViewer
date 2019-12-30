@@ -11,17 +11,16 @@ using System.Windows.Forms;
 
 namespace MCPLOGViewer.View
 {
-    public partial class PalavrasImportantes : Form
+    public partial class Preferencias : Form
         
     {
         Manipulation manipulation;
-        public int opDestaque;
-        public PalavrasImportantes(Manipulation manipulation)
+
+        public Preferencias(Manipulation manipulation)
         {
             InitializeComponent();
 
-            this.manipulation = manipulation;
-            
+            this.manipulation = manipulation;            
             
         }     
 
@@ -29,7 +28,19 @@ namespace MCPLOGViewer.View
         {
 
             lst_palavras.Items.AddRange(manipulation.ListaPalavrasImportantes.ToArray());
-            rbt_sem_destaque.Checked = true;
+            if(manipulation.opDestaque == 0)
+            {
+                rbt_sem_destaque.Checked = true;
+                rbt_destaque.Checked = false;
+            }
+            else
+            {
+                rbt_sem_destaque.Checked = false;
+                rbt_destaque.Checked = true;
+            }
+            
+            cmb_fonte.SelectedItem = manipulation.opFonte;
+            cmb_tamanho.SelectedItem = manipulation.opTamanho;
         }
 
         private void btn_adcicionar_Click(object sender, EventArgs e)
@@ -60,7 +71,18 @@ namespace MCPLOGViewer.View
 
         private void PalavrasImportantes_Disposed(object sender, EventArgs e)
         {
-            
+            manipulation.opFonte = cmb_fonte.SelectedItem.ToString();
+            manipulation.opTamanho = cmb_tamanho.SelectedItem.ToString();
+            if(rbt_destaque.Checked == true)
+            {
+                manipulation.opDestaque = 1;
+            }
+            else
+            {
+                manipulation.opDestaque = 0;
+            }
+
+
             manipulation.XMLDataWriter(manipulation.ListaPalavrasImportantes.ToArray());
         }
 
@@ -72,14 +94,12 @@ namespace MCPLOGViewer.View
         private void rbt_destaque_CheckedChanged(object sender, EventArgs e)
         {
             manipulation.opDestaque = 1;
-            opDestaque = 1;
         }
 
 
         private void rbt_sem_destaque_CheckedChanged(object sender, EventArgs e)
         {
             manipulation.opDestaque = 0;
-            opDestaque = 0;
         }
 
         private void txt_palavra_Click(object sender, EventArgs e)

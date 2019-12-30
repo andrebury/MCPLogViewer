@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<MCPLogViewer>
+  <ListaPalavras>
+    <palavra cor="Red">prompt_start </palavra>
+    <palavra cor="Red">Adding userdata </palavra>
+    <palavra cor="Red">prompt_stop </palavra>
+    <palavra cor="Red">X-Genesys-</palavra>
+    <palavra cor="Red">ANI=sip:</palavra>
+    <palavra cor="Red">form_enter :</palavra>
+    <palavra cor="Red">form_exit </palavra>
+    <palavra cor="Red">goto :#</palavra>
+  </ListaPalavras>
+</MCPLogViewer>

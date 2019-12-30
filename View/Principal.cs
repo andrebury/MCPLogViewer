@@ -18,7 +18,7 @@ namespace MCPLOGViewer.View
         private delegate void SafeCallDelegate(string linhaTexto);
         private Thread threadWriteText = null;
         string lido;
-        public PalavrasImportantes palavrasImportantes;
+        public Preferencias palavrasImportantes;
 
         public Principal()
         {
@@ -112,6 +112,11 @@ namespace MCPLOGViewer.View
             {
                 if (openFileDialog1.FileName != "")
                 {
+                    float tamFloat = float.Parse(manipulation.opTamanho);
+                    Font font = new Font(manipulation.opFonte, tamFloat);
+                    //Font font = new Font(manipulation.opFonte, manipulation.opTamanho);
+                    txt_Logtext.Font = font;
+                    
                     abrirArquivo(openFileDialog1.FileName.ToString());
                 }
                 else
@@ -207,37 +212,15 @@ namespace MCPLOGViewer.View
         }
 
 
-        private void rbt_destaque_CheckedChanged(object sender, EventArgs e)
-        {
-            manipulation.opDestaque = 1;
-        }
-
-        
-        private void rbt_sem_destaque_CheckedChanged(object sender, EventArgs e)
-        {
-            manipulation.opDestaque = 0;
-        }
-
         private void palavrasImportantesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            palavrasImportantes = new PalavrasImportantes(manipulation);
+            palavrasImportantes = new Preferencias(manipulation);
             palavrasImportantes.Show();
-            palavrasImportantes.Disposed += new System.EventHandler(palavrasImportantesDisposed);
-
-
-        }
-
-        private void palavrasImportantesDisposed(object sender, EventArgs e)
-        {
-            manipulation.opDestaque = palavrasImportantes.opDestaque;
         }
 
         private void Principal_Load(object sender, EventArgs e)
         {
 
-            manipulation.opDestaque = 0;
-            rbt_sem_destaque.Checked = true;
-            rbt_destaque.Checked = false;
         }
     }  
 }

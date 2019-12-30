@@ -49,11 +49,7 @@ namespace MCPLOGViewer.View
             this.separarPacotesSIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.gbo_destaque = new System.Windows.Forms.GroupBox();
-            this.rbt_sem_destaque = new System.Windows.Forms.RadioButton();
-            this.rbt_destaque = new System.Windows.Forms.RadioButton();
             this.menuStrip2.SuspendLayout();
-            this.gbo_destaque.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -169,28 +165,28 @@ namespace MCPLOGViewer.View
             // palavrasImportantesToolStripMenuItem
             // 
             this.palavrasImportantesToolStripMenuItem.Name = "palavrasImportantesToolStripMenuItem";
-            this.palavrasImportantesToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.palavrasImportantesToolStripMenuItem.Text = "Palavras importantes";
+            this.palavrasImportantesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.palavrasImportantesToolStripMenuItem.Text = "Preferências";
             this.palavrasImportantesToolStripMenuItem.Click += new System.EventHandler(this.palavrasImportantesToolStripMenuItem_Click);
             // 
             // aumentarFonteToolStripMenuItem
             // 
             this.aumentarFonteToolStripMenuItem.Name = "aumentarFonteToolStripMenuItem";
-            this.aumentarFonteToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.aumentarFonteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aumentarFonteToolStripMenuItem.Text = "Aumentar Fonte";
             this.aumentarFonteToolStripMenuItem.Click += new System.EventHandler(this.aumentarFonteToolStripMenuItem_Click);
             // 
             // diminuirFonteToolStripMenuItem
             // 
             this.diminuirFonteToolStripMenuItem.Name = "diminuirFonteToolStripMenuItem";
-            this.diminuirFonteToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.diminuirFonteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.diminuirFonteToolStripMenuItem.Text = "Diminuir Fonte";
             this.diminuirFonteToolStripMenuItem.Click += new System.EventHandler(this.diminuirFonteToolStripMenuItem_Click);
             // 
             // separarPacotesSIPToolStripMenuItem
             // 
             this.separarPacotesSIPToolStripMenuItem.Name = "separarPacotesSIPToolStripMenuItem";
-            this.separarPacotesSIPToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.separarPacotesSIPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.separarPacotesSIPToolStripMenuItem.Text = "Separar Pacotes SIP";
             this.separarPacotesSIPToolStripMenuItem.Click += new System.EventHandler(this.separarPacotesSIPToolStripMenuItem_Click);
             // 
@@ -212,46 +208,11 @@ namespace MCPLOGViewer.View
             this.menuStrip2.Size = new System.Drawing.Size(1422, 24);
             this.menuStrip2.TabIndex = 0;
             this.menuStrip2.Text = "menuStrip2";
-            // 
-            // gbo_destaque
-            // 
-            this.gbo_destaque.Controls.Add(this.rbt_sem_destaque);
-            this.gbo_destaque.Controls.Add(this.rbt_destaque);
-            this.gbo_destaque.Location = new System.Drawing.Point(332, 50);
-            this.gbo_destaque.Name = "gbo_destaque";
-            this.gbo_destaque.Size = new System.Drawing.Size(193, 87);
-            this.gbo_destaque.TabIndex = 21;
-            this.gbo_destaque.TabStop = false;
-            this.gbo_destaque.Text = "Destaque em Palavras Importantes";
-            // 
-            // rbt_sem_destaque
-            // 
-            this.rbt_sem_destaque.AutoSize = true;
-            this.rbt_sem_destaque.Location = new System.Drawing.Point(11, 49);
-            this.rbt_sem_destaque.Name = "rbt_sem_destaque";
-            this.rbt_sem_destaque.Size = new System.Drawing.Size(136, 17);
-            this.rbt_sem_destaque.TabIndex = 1;
-            this.rbt_sem_destaque.TabStop = true;
-            this.rbt_sem_destaque.Text = "Sem Destaque no texto";
-            this.rbt_sem_destaque.UseVisualStyleBackColor = true;
-            this.rbt_sem_destaque.CheckedChanged += new System.EventHandler(this.rbt_sem_destaque_CheckedChanged);
-            // 
-            // rbt_destaque
-            // 
-            this.rbt_destaque.AutoSize = true;
-            this.rbt_destaque.Location = new System.Drawing.Point(11, 26);
-            this.rbt_destaque.Name = "rbt_destaque";
-            this.rbt_destaque.Size = new System.Drawing.Size(112, 17);
-            this.rbt_destaque.TabIndex = 0;
-            this.rbt_destaque.TabStop = true;
-            this.rbt_destaque.Text = "Destaque no texto";
-            this.rbt_destaque.UseVisualStyleBackColor = true;
-            this.rbt_destaque.CheckedChanged += new System.EventHandler(this.rbt_destaque_CheckedChanged);
+                       
             // 
             // Principal
             // 
             this.ClientSize = new System.Drawing.Size(1422, 617);
-            this.Controls.Add(this.gbo_destaque);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lst_debugIDs);
             this.Controls.Add(this.btn_buscarLigacoes);
@@ -267,8 +228,6 @@ namespace MCPLOGViewer.View
             this.Load += new System.EventHandler(this.Principal_Load);
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
-            this.gbo_destaque.ResumeLayout(false);
-            this.gbo_destaque.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,9 +260,7 @@ namespace MCPLOGViewer.View
         private System.Windows.Forms.ToolStripMenuItem separarPacotesSIPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.GroupBox gbo_destaque;
-        private System.Windows.Forms.RadioButton rbt_sem_destaque;
-        private System.Windows.Forms.RadioButton rbt_destaque;
+
     }
 }
 
