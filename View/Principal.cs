@@ -15,54 +15,26 @@ namespace MCPLOGViewer.View
     {
         List<string> texto;
         Manipulation manipulation;
-        private delegate void SafeCallDelegate(string linhaTexto);
-        private Thread threadWriteText = null;
         string lido;
         public Preferencias palavrasImportantes;
-
+        int buscafocus;
         public Principal()
         {
             InitializeComponent();
             manipulation = new Manipulation();
             texto = new List<string>();
         }
-
         
         private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
-
-        public void ThreadWriteText()
-        {               
-                
-            backgroundEscreveTexto(lido);
-                
-        }
-
-        public void backgroundEscreveTexto(string lido)
+               
+        public void abrirArquivo(string fileSelected)
         {
-            if (txt_Logtext.InvokeRequired)
-            {
-                var d = new SafeCallDelegate(backgroundEscreveTexto);
-                txt_Logtext.Invoke(new Action<string>(backgroundEscreveTexto), lido);
-            }
-            else
-            {
-                txt_Logtext.AppendText(lido);
-                lido = "";
-            }
-        }
-
-
-        public async void abrirArquivo(string fileSelected)
-        {
-
             texto.Clear();
             txt_Logtext.Clear();
             lido = "";
-            await Task.Run(() =>
-            {
 
                 using (StreamReader objReader = new StreamReader(fileSelected))
                 {
@@ -73,18 +45,40 @@ namespace MCPLOGViewer.View
                         objReader.Close();
                     }
                 }
-                threadWriteText = new Thread(new ThreadStart(ThreadWriteText));
-                threadWriteText.Start();
+            txt_Logtext.AppendText(lido);
+            lido = "";
+            adicionaTexto();
+        }
+
+        public async void abrirArquivo2(string fileSelected)
+        {
+            texto.Clear();
+            txt_Logtext.Clear();
+            lido = "";
+            await Task.Run(() =>
+            {
+                using (StreamReader objReader = new StreamReader(fileSelected))
+                {
+                    if (File.Exists(fileSelected))
+                    {
+                        //txt_Logtext.AppendText(objReader.ReadToEnd());
+                        lido = objReader.ReadToEnd();
+                        objReader.Close();
+                    }
+                }
             });
-        }   
+            txt_Logtext.AppendText(lido);
+            lido = "";
+            adicionaTexto();
+        }
 
         public void busca(string buscado)
         {
-            
-            if (texto.Count <= 0)
-            {
-                adicionaTexto();
-            } 
+
+            //if (texto.Count <= 0)
+            //{
+            //    adicionaTexto();
+            //}
 
             LogFiltrado logFiltrado = new LogFiltrado(texto, buscado, manipulation);
             logFiltrado.Show();
@@ -149,6 +143,7 @@ namespace MCPLOGViewer.View
        
         private void btn_juntarLigacoes_Click(object sender, EventArgs e)
         {
+            lst_debugIDs.Items.Clear();
             lst_debugIDs.Items.AddRange(manipulation.encotrarTelefone(txt_Logtext, txt_busca.Text));
             
         }
@@ -220,7 +215,36 @@ namespace MCPLOGViewer.View
 
         private void Principal_Load(object sender, EventArgs e)
         {
+            chk_MatchCase.Checked = true;
+        }
 
+        private void btn_buscarFoco_Click(object sender, EventArgs e)
+        {
+            buscafocus++;
+            if(chk_MatchCase.Checked == true)
+            {
+                buscafocus = txt_Logtext.Find(txt_buscarFoco.Text, buscafocus, RichTextBoxFinds.MatchCase);
+            }
+            else
+            {
+                buscafocus = txt_Logtext.Find(txt_buscarFoco.Text, buscafocus, RichTextBoxFinds.None);
+            }
+            if(buscafocus >= 0)
+            {
+                txt_Logtext.Select(buscafocus, txt_buscarFoco.Text.Length);
+                txt_Logtext.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Não foi encontrado o valor da busca no texto!");
+            }
+            
+            
+        }
+
+        private void txt_buscarFoco_TextChanged(object sender, EventArgs e)
+        {
+            buscafocus = -1;
         }
     }  
 }

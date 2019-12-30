@@ -46,7 +46,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.14286F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.85714F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 800F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 801F));
             this.tableLayoutPanel1.Controls.Add(this.lbl_mensagens, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbl_debugIDs, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txt_SipText, 2, 1);
@@ -69,7 +69,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_mensagens.AutoSize = true;
             this.lbl_mensagens.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_mensagens.Location = new System.Drawing.Point(152, 0);
+            this.lbl_mensagens.Location = new System.Drawing.Point(151, 0);
             this.lbl_mensagens.Name = "lbl_mensagens";
             this.lbl_mensagens.Size = new System.Drawing.Size(308, 71);
             this.lbl_mensagens.TabIndex = 5;
@@ -85,7 +85,7 @@
             this.lbl_debugIDs.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_debugIDs.Location = new System.Drawing.Point(3, 0);
             this.lbl_debugIDs.Name = "lbl_debugIDs";
-            this.lbl_debugIDs.Size = new System.Drawing.Size(143, 71);
+            this.lbl_debugIDs.Size = new System.Drawing.Size(142, 71);
             this.lbl_debugIDs.TabIndex = 4;
             this.lbl_debugIDs.Text = "Ligações";
             this.lbl_debugIDs.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -95,10 +95,10 @@
             this.txt_SipText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_SipText.Location = new System.Drawing.Point(466, 74);
+            this.txt_SipText.Location = new System.Drawing.Point(465, 74);
             this.txt_SipText.Name = "txt_SipText";
             this.txt_SipText.ReadOnly = true;
-            this.txt_SipText.Size = new System.Drawing.Size(795, 333);
+            this.txt_SipText.Size = new System.Drawing.Size(796, 333);
             this.txt_SipText.TabIndex = 2;
             this.txt_SipText.Text = "";
             // 
@@ -108,7 +108,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lst_infos.FormattingEnabled = true;
-            this.lst_infos.Location = new System.Drawing.Point(152, 74);
+            this.lst_infos.Location = new System.Drawing.Point(151, 74);
             this.lst_infos.Name = "lst_infos";
             this.lst_infos.Size = new System.Drawing.Size(308, 329);
             this.lst_infos.TabIndex = 1;
@@ -122,7 +122,7 @@
             this.lst_debugids.FormattingEnabled = true;
             this.lst_debugids.Location = new System.Drawing.Point(3, 74);
             this.lst_debugids.Name = "lst_debugids";
-            this.lst_debugids.Size = new System.Drawing.Size(143, 329);
+            this.lst_debugids.Size = new System.Drawing.Size(142, 329);
             this.lst_debugids.TabIndex = 0;
             this.lst_debugids.SelectedIndexChanged += new System.EventHandler(this.lst_debugids_SelectedIndexChanged);
             // 
@@ -133,9 +133,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_textoSIP.AutoSize = true;
             this.lbl_textoSIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_textoSIP.Location = new System.Drawing.Point(466, 0);
+            this.lbl_textoSIP.Location = new System.Drawing.Point(465, 0);
             this.lbl_textoSIP.Name = "lbl_textoSIP";
-            this.lbl_textoSIP.Size = new System.Drawing.Size(795, 71);
+            this.lbl_textoSIP.Size = new System.Drawing.Size(796, 71);
             this.lbl_textoSIP.TabIndex = 3;
             this.lbl_textoSIP.Text = "Texto da Mensagem";
             this.lbl_textoSIP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

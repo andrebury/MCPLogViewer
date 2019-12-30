@@ -1,15 +1,10 @@
 ﻿using MCPLOGViewer.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MCPLOGViewer.View
@@ -20,10 +15,13 @@ namespace MCPLOGViewer.View
         Manipulation manipulation;
         string buscado;
         string logFileName;
+        private delegate void SafeCallDelegate(string linhaTexto);
+        private Thread threadWriteText = null;
+        int buscafocus;
 
         public LogFiltrado(List<string> texto, string buscado, Manipulation manipulation)
         {
-            InitializeComponent();
+            InitializeComponent();            
             this.texto = texto;
             this.buscado = buscado;
             this.manipulation = manipulation;
@@ -31,16 +29,20 @@ namespace MCPLOGViewer.View
 
         private void LogFiltrado_Load(object sender, EventArgs e)
         {
+            chk_MatchCase.Checked = true;
+
             if (manipulation.opDestaque == 1)
             {
-                buscaCor2();
+                buscaCor();
             }
-            else 
-            { 
-                buscaSemCor(); 
+            else
+            {
+                buscaSemCor();
             }
 
-            }
+        }
+
+   
 
         private void buscaSemCor()
         {
@@ -63,7 +65,7 @@ namespace MCPLOGViewer.View
 
         }
 
-        private void buscaCor2()
+        private void buscaCor()
         {
 
             List<string> linhasEncontradas = new List<string>();
@@ -101,58 +103,6 @@ namespace MCPLOGViewer.View
             }
             txt_logFiltrado.SelectionStart = 0;
             txt_logFiltrado.Focus();
-        }
-
-
-
-        private void buscaCor()
-        {
-
-            List<string> linhasEncontradas = new List<string>();
-            foreach (string linha in texto)
-            {
-                if (linha.ToLower().IndexOf(buscado.ToLower()) > 0)
-                {
-
-                    linhasEncontradas.Add(linha + "\n");
-                }
-            }
-            foreach (string linha in linhasEncontradas)
-            {                
-                txt_logFiltrado.AppendText(linha);
-                int tamTexto = txt_logFiltrado.TextLength;
-                manipulation.ListaPalavrasImportantes.Add(buscado);
-                foreach (string word in manipulation.ListaPalavrasImportantes)
-                {
-                    int posWord = 0;
-                    bool encontrou = true;
-                    while (encontrou == true)
-                    {
-                        if (posWord == 0)
-                        {
-                            posWord = txt_logFiltrado.Find(word.Trim(), tamTexto, RichTextBoxFinds.MatchCase);
-                        }
-                        else
-                        {
-                            posWord = txt_logFiltrado.Find(word.Trim(), posWord + word.Length, RichTextBoxFinds.MatchCase);
-                        }
-
-
-                        if (posWord >= 0)
-                        {
-                            txt_logFiltrado.Select(posWord, word.Length);
-                            txt_logFiltrado.SelectionColor = Color.Red;
-                        }
-                        else
-                        {
-                            encontrou = false;
-                        }
-                    }
-                }
-                manipulation.ListaPalavrasImportantes.Remove(buscado);
-                txt_logFiltrado.SelectionStart = 0;
-                txt_logFiltrado.Focus();
-            }
         }
 
         private void salvarComoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -250,6 +200,33 @@ namespace MCPLOGViewer.View
         private void txt_logFiltrado_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_buscarFoco_Click(object sender, EventArgs e)
+        {
+            buscafocus++;
+            if (chk_MatchCase.Checked == true)
+            {
+                buscafocus = txt_logFiltrado.Find(txt_buscarFoco.Text, buscafocus, RichTextBoxFinds.MatchCase);
+            }
+            else
+            {
+                buscafocus = txt_logFiltrado.Find(txt_buscarFoco.Text, buscafocus, RichTextBoxFinds.None);
+            }
+            if (buscafocus >= 0)
+            {
+                txt_logFiltrado.Select(buscafocus, txt_buscarFoco.Text.Length);
+                txt_logFiltrado.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Não foi encontrado o valor da busca no texto!");
+            }
+        }
+
+        private void txt_buscarFoco_TextChanged(object sender, EventArgs e)
+        {
+            buscafocus = -1;
         }
     }
 }

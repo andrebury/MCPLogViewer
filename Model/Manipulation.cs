@@ -89,7 +89,14 @@ namespace MCPLOGViewer.Model
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.PreserveWhitespace = true;
 
-            try { xmlDoc.Load(pastaConfig + "\\PalavrasImportantes.xml"); }
+            try 
+            { 
+                if(!File.Exists(pastaConfig + "\\PalavrasImportantes.xml"))
+                {
+                    Directory.CreateDirectory(pastaConfig);
+                }
+                xmlDoc.Load(pastaConfig + "\\PalavrasImportantes.xml"); 
+            }
             catch (System.IO.FileNotFoundException)
             {
                 xmlDoc.LoadXml("<?xml version=\"1.0\" encoding=\"Windows-1252\" standalone=\"yes\"?>\n" +

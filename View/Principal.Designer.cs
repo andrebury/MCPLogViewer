@@ -49,6 +49,10 @@ namespace MCPLOGViewer.View
             this.separarPacotesSIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_buscarFoco = new System.Windows.Forms.TextBox();
+            this.btn_buscarFoco = new System.Windows.Forms.Button();
+            this.chk_MatchCase = new System.Windows.Forms.CheckBox();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -165,28 +169,28 @@ namespace MCPLOGViewer.View
             // palavrasImportantesToolStripMenuItem
             // 
             this.palavrasImportantesToolStripMenuItem.Name = "palavrasImportantesToolStripMenuItem";
-            this.palavrasImportantesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.palavrasImportantesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.palavrasImportantesToolStripMenuItem.Text = "Preferências";
             this.palavrasImportantesToolStripMenuItem.Click += new System.EventHandler(this.palavrasImportantesToolStripMenuItem_Click);
             // 
             // aumentarFonteToolStripMenuItem
             // 
             this.aumentarFonteToolStripMenuItem.Name = "aumentarFonteToolStripMenuItem";
-            this.aumentarFonteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aumentarFonteToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.aumentarFonteToolStripMenuItem.Text = "Aumentar Fonte";
             this.aumentarFonteToolStripMenuItem.Click += new System.EventHandler(this.aumentarFonteToolStripMenuItem_Click);
             // 
             // diminuirFonteToolStripMenuItem
             // 
             this.diminuirFonteToolStripMenuItem.Name = "diminuirFonteToolStripMenuItem";
-            this.diminuirFonteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.diminuirFonteToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.diminuirFonteToolStripMenuItem.Text = "Diminuir Fonte";
             this.diminuirFonteToolStripMenuItem.Click += new System.EventHandler(this.diminuirFonteToolStripMenuItem_Click);
             // 
             // separarPacotesSIPToolStripMenuItem
             // 
             this.separarPacotesSIPToolStripMenuItem.Name = "separarPacotesSIPToolStripMenuItem";
-            this.separarPacotesSIPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.separarPacotesSIPToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.separarPacotesSIPToolStripMenuItem.Text = "Separar Pacotes SIP";
             this.separarPacotesSIPToolStripMenuItem.Click += new System.EventHandler(this.separarPacotesSIPToolStripMenuItem_Click);
             // 
@@ -208,11 +212,52 @@ namespace MCPLOGViewer.View
             this.menuStrip2.Size = new System.Drawing.Size(1422, 24);
             this.menuStrip2.TabIndex = 0;
             this.menuStrip2.Text = "menuStrip2";
-                       
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(326, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 20);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Busca";
+            // 
+            // txt_buscarFoco
+            // 
+            this.txt_buscarFoco.Location = new System.Drawing.Point(330, 51);
+            this.txt_buscarFoco.Name = "txt_buscarFoco";
+            this.txt_buscarFoco.Size = new System.Drawing.Size(100, 20);
+            this.txt_buscarFoco.TabIndex = 21;
+            this.txt_buscarFoco.TextChanged += new System.EventHandler(this.txt_buscarFoco_TextChanged);
+            // 
+            // btn_buscarFoco
+            // 
+            this.btn_buscarFoco.Location = new System.Drawing.Point(436, 51);
+            this.btn_buscarFoco.Name = "btn_buscarFoco";
+            this.btn_buscarFoco.Size = new System.Drawing.Size(75, 23);
+            this.btn_buscarFoco.TabIndex = 22;
+            this.btn_buscarFoco.Text = "Buscar";
+            this.btn_buscarFoco.UseVisualStyleBackColor = true;
+            this.btn_buscarFoco.Click += new System.EventHandler(this.btn_buscarFoco_Click);
+            // 
+            // chk_MatchCase
+            // 
+            this.chk_MatchCase.AutoSize = true;
+            this.chk_MatchCase.Location = new System.Drawing.Point(333, 93);
+            this.chk_MatchCase.Name = "chk_MatchCase";
+            this.chk_MatchCase.Size = new System.Drawing.Size(143, 17);
+            this.chk_MatchCase.TabIndex = 23;
+            this.chk_MatchCase.Text = "Diferenciar Lower/Upper";
+            this.chk_MatchCase.UseVisualStyleBackColor = true;
             // 
             // Principal
             // 
             this.ClientSize = new System.Drawing.Size(1422, 617);
+            this.Controls.Add(this.chk_MatchCase);
+            this.Controls.Add(this.btn_buscarFoco);
+            this.Controls.Add(this.txt_buscarFoco);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lst_debugIDs);
             this.Controls.Add(this.btn_buscarLigacoes);
@@ -260,7 +305,10 @@ namespace MCPLOGViewer.View
         private System.Windows.Forms.ToolStripMenuItem separarPacotesSIPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.MenuStrip menuStrip2;
-
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txt_buscarFoco;
+        private System.Windows.Forms.Button btn_buscarFoco;
+        private System.Windows.Forms.CheckBox chk_MatchCase;
     }
 }
 

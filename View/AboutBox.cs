@@ -21,5 +21,10 @@ namespace MCPLOGViewer.View
         {
             this.Dispose();
         }
+
+        private void lbl_git_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/andrebury/MCPLogViewer");
+        }
     }
 }
