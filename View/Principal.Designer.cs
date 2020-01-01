@@ -40,7 +40,6 @@ namespace MCPLOGViewer.View
             this.label3 = new System.Windows.Forms.Label();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirArquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.mn_sair = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.palavrasImportantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,7 +128,6 @@ namespace MCPLOGViewer.View
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.abrirArquivoToolStripMenuItem,
-            this.toolStripMenuItem3,
             this.mn_sair});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
@@ -138,20 +136,14 @@ namespace MCPLOGViewer.View
             // abrirArquivoToolStripMenuItem
             // 
             this.abrirArquivoToolStripMenuItem.Name = "abrirArquivoToolStripMenuItem";
-            this.abrirArquivoToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.abrirArquivoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.abrirArquivoToolStripMenuItem.Text = "Abrir Arquivo";
             this.abrirArquivoToolStripMenuItem.Click += new System.EventHandler(this.abrirArquivoToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(145, 22);
-            this.toolStripMenuItem3.Text = "Salvar";
             // 
             // mn_sair
             // 
             this.mn_sair.Name = "mn_sair";
-            this.mn_sair.Size = new System.Drawing.Size(145, 22);
+            this.mn_sair.Size = new System.Drawing.Size(180, 22);
             this.mn_sair.Text = "Sair";
             this.mn_sair.Click += new System.EventHandler(this.mn_sair_Click);
             // 
@@ -169,28 +161,28 @@ namespace MCPLOGViewer.View
             // palavrasImportantesToolStripMenuItem
             // 
             this.palavrasImportantesToolStripMenuItem.Name = "palavrasImportantesToolStripMenuItem";
-            this.palavrasImportantesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.palavrasImportantesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.palavrasImportantesToolStripMenuItem.Text = "Preferências";
             this.palavrasImportantesToolStripMenuItem.Click += new System.EventHandler(this.palavrasImportantesToolStripMenuItem_Click);
             // 
             // aumentarFonteToolStripMenuItem
             // 
             this.aumentarFonteToolStripMenuItem.Name = "aumentarFonteToolStripMenuItem";
-            this.aumentarFonteToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.aumentarFonteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aumentarFonteToolStripMenuItem.Text = "Aumentar Fonte";
             this.aumentarFonteToolStripMenuItem.Click += new System.EventHandler(this.aumentarFonteToolStripMenuItem_Click);
             // 
             // diminuirFonteToolStripMenuItem
             // 
             this.diminuirFonteToolStripMenuItem.Name = "diminuirFonteToolStripMenuItem";
-            this.diminuirFonteToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.diminuirFonteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.diminuirFonteToolStripMenuItem.Text = "Diminuir Fonte";
             this.diminuirFonteToolStripMenuItem.Click += new System.EventHandler(this.diminuirFonteToolStripMenuItem_Click);
             // 
             // separarPacotesSIPToolStripMenuItem
             // 
             this.separarPacotesSIPToolStripMenuItem.Name = "separarPacotesSIPToolStripMenuItem";
-            this.separarPacotesSIPToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.separarPacotesSIPToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.separarPacotesSIPToolStripMenuItem.Text = "Separar Pacotes SIP";
             this.separarPacotesSIPToolStripMenuItem.Click += new System.EventHandler(this.separarPacotesSIPToolStripMenuItem_Click);
             // 
@@ -296,7 +288,6 @@ namespace MCPLOGViewer.View
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem abrirArquivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem mn_sair;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem palavrasImportantesToolStripMenuItem;

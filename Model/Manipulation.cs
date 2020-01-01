@@ -117,25 +117,52 @@ namespace MCPLOGViewer.Model
             finally
             {
                 XmlNodeList ListapalavraNode = xmlDoc.SelectNodes("//MCPLogViewer/ListaPalavras");
-                foreach (XmlNode opDestaqueNode in ListapalavraNode)
-                {
-                    opDestaque = int.Parse(opDestaqueNode.Attributes["destaque"].Value);
+                if (ListapalavraNode.Count <= 0) {
+
+                    opDestaque = 0;
                 }
+                else
+                {
+                    foreach (XmlNode opDestaqueNode in ListapalavraNode)
+                    {
+                        opDestaque = int.Parse(opDestaqueNode.Attributes["destaque"].Value);
+                    }
+                }
+
 
 
                 XmlNodeList palavraNodes = xmlDoc.SelectNodes("//MCPLogViewer/ListaPalavras/palavra");
-                foreach (XmlNode palavraNode in palavraNodes)
+                if (palavraNodes.Count <= 0)
                 {
-                    ListaPalavrasImportantes.Add(palavraNode.InnerText);
-                    //int age = int.Parse(userNode.Attributes["age"].Value);
-                    //userNode.Attributes["cor"].Value = NEWCOLOR.ToString();
+                    ListaPalavrasImportantes.AddRange(palavrasProcuradas);
                 }
+                else
+                {
+                    foreach (XmlNode palavraNode in palavraNodes)
+                    {
+                        ListaPalavrasImportantes.Add(palavraNode.InnerText);
+                        //int age = int.Parse(userNode.Attributes["age"].Value);
+                        //userNode.Attributes["cor"].Value = NEWCOLOR.ToString();
+                    }
+                }
+                
+                    
                 XmlNodeList fontesNode = xmlDoc.SelectNodes("//MCPLogViewer/Fonte");
-                foreach (XmlNode fonteNode in fontesNode)
+                
+                if(fontesNode.Count <= 0)
                 {
-                    opFonte = fonteNode.Attributes["fonte"].Value;                        
-                    opTamanho = fonteNode.Attributes["tamanho"].Value;
+                    opFonte = "Consolas";
+                    opTamanho = "12";
                 }
+                else
+                {
+                    foreach (XmlNode fonteNode in fontesNode)
+                    {
+                        opFonte = fonteNode.Attributes["fonte"].Value;
+                        opTamanho = fonteNode.Attributes["tamanho"].Value;
+                    }
+                }
+                
             }
         }
 

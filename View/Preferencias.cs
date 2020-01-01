@@ -39,6 +39,7 @@ namespace MCPLOGViewer.View
                 rbt_destaque.Checked = true;
             }
             
+
             cmb_fonte.SelectedItem = manipulation.opFonte;
             cmb_tamanho.SelectedItem = manipulation.opTamanho;
         }
