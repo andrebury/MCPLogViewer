@@ -1,6 +1,8 @@
 # MCPLogViewer
 Genesys Media Control Plataform Log Viewer.
 
+https://github.com/andrebury/MCPLogViewer/releases/download/v1.0/MCPLOGViewer.exe
+https://github.com/andrebury/MCPLogViewer/archive/v1.0.zip
 
 Analisador de Pacotes SIP das ligações:
 ![MCPLogViewer_Screenshot](https://user-images.githubusercontent.com/19481911/71642544-bfe8c200-2c8b-11ea-84b3-028c0b40d98f.png)
